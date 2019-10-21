@@ -14,7 +14,24 @@
 </head>
 
 <body class="bodyForm">
-    <button id="signOutButton">Sign Out</button>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <!--My Games-->
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">My Games</a>
+            <div class="dropdown-content">
+                <a href="myGames.html">View My Games</a>
+                <a href="myStatistics.html">View My Statistics</a>
+            </div>
+        </li>
+        <!--Add A Game-->
+        <li><a href="addGame.html">Add A Game</a></li>
+        <!--Edit My Games-->
+        <li>
+            <a class="active" href="editGame.html">Edit My Games</a>
+        </li>
+        <li style="float:right"><a id="signOutButton" href="#">Sign Out</a></li>
+    </ul>
     <div id="addGame">
 
         <form id="gameInput" onsubmit="submitGameData(this); event.preventDefault();">
@@ -100,7 +117,7 @@
             var times = form["times"].value;
             var comments = form["comments"].value;
             //Prevented some forms of a malicious XSS Attack
-            comments.replace(/javascript|document|<|>|script|alert|[?=]|window|var|request/gi, "");
+            comments.replace(/javascript|document|<|>|script|alert|[?=]|window|var|request/gi, / /);
 
             function sanitizeString(str) {
                 var div = document.createElement('div');

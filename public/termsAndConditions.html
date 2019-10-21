@@ -3,6 +3,7 @@
 
 <head>
     <title>Terms and Conditions</title>
+    <link href="styles.css" rel="stylesheet" />
     <style>
         * {
             box-sizing: border-box;
@@ -58,6 +59,24 @@
 </head>
 
 <body>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <!--My Games-->
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">My Games</a>
+            <div class="dropdown-content">
+                <a href="myGames.html">View My Games</a>
+                <a href="myStatistics.html">View My Statistics</a>
+            </div>
+        </li>
+        <!--Add A Game-->
+        <li><a href="addGame.html">Add A Game</a></li>
+        <!--Edit My Games-->
+        <li>
+            <a class="active" href="editGame.html">Edit My Games</a>
+        </li>
+        <li style="float:right"><a id="signOutButton" href="#">Sign Out</a></li>
+    </ul>
     <div class="header">
         <h1><u>Terms and Conditions to Use a Product of Ayman Studios</u>:</h1>
     </div>
@@ -137,6 +156,12 @@
         <a href="termsAndConditions.html">Terms and Conditions</a>
         <p>Copyright &copy; Ayman Studios 2019. All Rights Reserved.&trade;</p>
     </footer>
+    <script>
+        if (localStorage.getItem("loggedIn") === null) {
+            document.querySelector("#signOutButton").innerText = "Login/Register";
+        }
+    </script>
+    <script src="signOut.js"></script>
 </body>
 
 </html>
