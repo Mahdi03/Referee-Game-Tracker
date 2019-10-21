@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="md5.js"></script>
+    <!--<script src="loggedIn.js"></script>-->
+</head>
+
+<body class="bodyForm">
+    <div id="login">
+        <div id="form">
+            <h1>Login:</h1>
+            <form name="login" action="" method="POST" onsubmit="signIn()">
+                <table>
+                    <tr>
+                        <td colspan="2">Don't have an account? Register <a href="register.html">here</a>.</td>
+                    </tr>
+                    <tr>
+                        <th>Username: </th>
+                        <td><input type="text" name="username" required /></td>
+                    </tr>
+                    <tr>
+                        <th>Password: </th>
+                        <td><input type="password" name="password" required /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button id="loginButton"><strong>Login</strong></button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <footer>
+            <a href="privacyPolicy.html">Privacy Policy</a>
+            <a href="termsAndConditions.html">Terms and Conditions</a>
+            <p>Copyright &copy; Ayman Studios 2019. All Rights Reserved.&trade;</p>
+        </footer>
+        <!--Firebase Links-->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="/__/firebase/7.2.1/firebase-app.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="/__/firebase/7.2.1/firebase-analytics.js"></script>
+        <script src="/__/firebase/7.2.1/firebase-firestore.js"></script>
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+        <!--Script To Handle Form-->
+        <script>
+            //Global Vars
+            var db = firebase.firestore();
+            var loginButton = document.querySelector("#loginButton");
+            //Main Login Function
+            function signIn() {
+                event.preventDefault();
+                var username = document.forms["login"]["username"].value.toLowerCase();
+                //Stores hashed password for security
+                var password = md5(document.forms["login"]["password"].value);
+                //Searches Database For Username
+                var errors = "";
+                try {
+                    var success = false;
+                    db.collection("users").where("username", "==", username).get().then(function(query) {
+                        query.forEach(function(doc) {
+                            if (doc.data().password === password) {
+                                alert("Welcome back!! You will now be redirected to your homepage");
+                                success = true;
+                                //Place Code Underneath to Handle Keeping user Logged In For Present and Future Visits, along with redirecting to a homepage
+                                //Code Goes Here
+                                db.collection("users").doc(username).get().then(function(doc) {
+                                    if (doc.exists) {
+                                        localStorage.setItem("loggedIn", JSON.stringify(doc.data()));
+                                    }
+                                    //alert(localStorage.getItem("loggedIn"));
+                                    window.location.replace("home.html");
+                                });
+                            } else {
+                                //If it fails, tell user to try again later (we don't care about the error message during production, because it is unlikely after our many tests)
+                                errors += "This password is incorrect. Please try again.";
+                            }
+                        })
+                        if (success === false) {
+                            throw success;
+                        }
+                    }).catch(function(error) {
+                        //If checking the database originally for the username fails, then give the user a warning
+                        alert("This username does not exist. Try again or sign up if you haven't already");
+                    });
+                } catch (error) {
+                    if (error === false) {
+                        errors += "Either the username or the password is incorrect. Try again or sign up if you haven't already";
+                        alert(errors);
+                    }
+                }
+            };
+        </script>
+    </div>
+</body>
+
+</html>

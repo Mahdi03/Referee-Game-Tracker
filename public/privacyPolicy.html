@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            color: rgb(128, 128, 128);
+            text-align: center;
+            background-color: #f1f1f1;
+            font-size: 20px;
+        }
+        /* Style the header */
+        
+        .header {
+            background-color: #f1f1f1;
+            padding: 50px;
+            text-align: center;
+        }
+        /* Container for flexboxes */
+        
+        .row {
+            display: -webkit-flex;
+            display: flex;
+        }
+        /* Create three equal columns that sits next to each other */
+        
+        .column {
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            padding: 10px;
+            display: block;
+            /* Should be removed. Only for demonstration */
+        }
+        
+        #section1 {
+            text-align: justify;
+        }
+        /* Style the footer */
+        
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            display: block;
+        }
+        
+        @media (max-width: 600px) {
+            .row {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+            }
+        }
+    </style>
+    <title>Privacy Policy</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1><u>Privacy Policy for Ayman Studios</u>:</h1>
+    </div>
+
+    <div class="row">
+        <div class="column" style="opacity:1;"></div>
+        <div class="column">
+            <div>
+                <h2>Privacy</h2>
+                <p>
+                    Your privacy is very important to us. We want users like you coming back to our websites while feeling safe and secure at all times. We promise not to share any information about you or even relating to you. The only thing that we could possibly be sharing
+                    is how many people use the application. So in truth, you are pretty much considered to us as nothing except a statistic.
+                </p>
+            </div>
+            <br />
+            <div>
+                <h2><strong>Your use of this website confirms with the acceptance of the Privacy Policy stated below.</strong></h2>
+            </div>
+            <br />
+            <div id="section1">
+                <h2>1. Data that we Collect</h2>
+                <ul>
+                    <li>Nothing.</li>
+                    <li>We only use HTML, CSS and JavaScript, and it is all hooked up to Google&copy; Firebase&trade;.</li>
+                    <li>The only information we store is your name, your username, your email, your encrypted password as a security measure, and the games that you have refereed.</li>
+                    <li>However, any and all of this information is kept private to you, so we know nothing about you and nothing of you.</li>
+                    <li>It's that simple. We don't share any information about the users with any third-party software at all.</li>
+                    <li>We hope that you feel very safe and secure anytime you as the user use this product.</li>
+                </ul>
+
+            </div>
+            <br />
+            <div id="section2">
+                <h3>Check out our <a href="MC_Application_Terms_And_Conditions.html" target="_blank" style="color:rgb(128, 128, 128);">Terms and Conditions</a> <a href="MC_Application_Terms_And_Conditions.html" target="_blank" style="color:rgb(128, 128, 128);">here</a>.</h3>
+            </div>
+        </div>
+        <div class="column" style="opacity:1;"></div>
+    </div>
+    <footer>
+        <a href="privacyPolicy.html">Privacy Policy</a>
+        <a href="termsAndConditions.html">Terms and Conditions</a>
+        <p>Copyright &copy; Ayman Studios 2019. All Rights Reserved.&trade;</p>
+    </footer>
+
+</body>
+
+</html>

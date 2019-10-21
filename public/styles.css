@@ -1,0 +1,184 @@
+/*Slabo 27px*/
+
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+* {
+    --login-or-register-button-background-color: rgb(29, 162, 214);
+    --login-or-register-page-background-color: rgb(118, 235, 153);
+    --login-or-register-input-background-color: rgba(255, 251, 0, 0.244);
+    --login-or-register-input-border-color: fuchsia;
+    --login-or-register-input-text-color: black;
+}
+
+footer {
+    /*position: absolute;*/
+    float: left;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    /*background-color: #f1f1f1;*/
+}
+
+footer a {
+    display: block;
+}
+
+.bodyForm {
+    background-color: var(--login-or-register-page-background-color);
+}
+
+#login *,
+#register *,
+#addGame * {
+    font-family: 'Slabo 27px', serif;
+    font-size: 25px;
+}
+
+#login,
+#register,
+#addGame {
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    resize: both;
+}
+
+#login h1,
+#register h1 #addGame h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+#login #form,
+#register #form,
+#addGame #form {
+    padding: 20px;
+    resize: both;
+}
+
+#login th,
+#login td,
+#register th,
+#register td,
+#addGame th,
+#addGame td {
+    padding: 5px;
+}
+
+#login td[colspan="2"],
+#register td[colspan="2"] {
+    text-align: center;
+    margin: 0 auto;
+}
+
+#login input,
+#register input,
+#addGame input {
+    background-color: var(--login-or-register-input-background-color);
+    border-radius: 25px;
+    border: 2px dashed;
+    border-color: var(--login-or-register-input-border-color);
+    padding: 10px;
+    width: 120%;
+    font-size: 20px;
+    color: var(--login-or-register-input-text-color);
+}
+
+#loginButton,
+#registerButton,
+#addGameButton {
+    padding: 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--login-or-register-button-background-color);
+}
+
+#loginButton:hover,
+#registerButton:hover,
+#addGameButton:hover,
+#login table select:hover,
+#register table select:hover,
+#addGame table select:hover,
+#login table select *:hover,
+#register table select *:hover,
+#addGame table select *:hover,
+#addGame table input[type=date] {
+    cursor: pointer;
+}
+
+#addGame textarea,
+#addGame select {
+    resize: none;
+    background-color: var(--login-or-register-input-background-color);
+    border-radius: 25px;
+    border: 2px dashed;
+    border-color: var(--login-or-register-input-border-color);
+    padding: 10px;
+    width: 120%;
+    font-size: 20px;
+    color: var(--login-or-register-input-text-color);
+}
+
+.column.left {
+    float: left;
+    width: 47%;
+    overflow: auto;
+}
+
+.column.right {
+    float: right;
+    width: 47%;
+    overflow: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+#gamesList,
+#statisticsList {
+    text-align: center;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#gamesList th,
+#gamesList td,
+#statisticsList th,
+#statisticsList td {
+    padding: 8px;
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+
+#signOutButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.deleteButton {
+    border: 1px solid grey;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: left;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: center;
+    background-color: red;
+    color: white;
+    border-radius: 25px;
+}
+
+.deleteButton:hover {
+    cursor: pointer;
+}

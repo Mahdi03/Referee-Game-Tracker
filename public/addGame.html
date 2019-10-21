@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add A Game</title>
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+        #success {
+            text-align: center;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bodyForm">
+    <button id="signOutButton">Sign Out</button>
+    <div id="addGame">
+
+        <form id="gameInput" onsubmit="submitGameData(this); event.preventDefault();">
+            <h1>Add A Game:</h1>
+            <table>
+                <tr>
+                    <th>Position: </th>
+                    <td>
+                        <select name="position" required>
+                            <option value="cr">Center</option>
+                            <option value="ar">Assistant</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Division: </th>
+                    <td>
+                        <select name="division" required>
+                                    <option value="u8">U-8</option>
+                                    <option value="u10">U-10</option>
+                                    <option value="u12">U-12</option>
+                                    <option value="u14">U-14</option>
+                                    <option value="u16">U-16</option>
+                                </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Gender: </th>
+                    <td>
+                        <select name="gender" required>
+                                            <option value="boys">Boys</option>
+                                            <option value="girls">Girls</option>
+                                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Date: </th>
+                    <td><input name="date" type="date" /></td>
+                </tr>
+                <tr>
+                    <th>Times: </th>
+                    <td><input type="number" name="times" value="1" /></td>
+                </tr>
+                <tr>
+                    <th>Comments:</th>
+                    <td><textarea name="comments"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button id="addGameButton">Add Game To Database</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="success">
+        <p>Your submission was successful. <a href="addGame.html">Submit another game</a></p>
+        <p><a href="home.html">Go home</a></p>
+    </div>
+    <footer>
+        <a href="privacyPolicy.html">Privacy Policy</a>
+        <a href="termsAndConditions.html">Terms and Conditions</a>
+        <p>Copyright &copy; Ayman Studios 2019. All Rights Reserved.&trade;</p>
+    </footer>
+    <!--Firebase Links-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.2.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.2.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.2.1/firebase-firestore.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <script src="loggedIn.js"></script>
+    <script src="signOut.js"></script>
+
+    <script>
+        var db = firebase.firestore();
+
+        function submitGameData(form) {
+            event.preventDefault();
+            var position = form["position"].value;
+            var division = form["division"].value;
+            var gender = form["gender"].value;
+            var date = String(form["date"].value);
+            var times = form["times"].value;
+            var comments = form["comments"].value;
+            //Prevented some forms of a malicious XSS Attack
+            comments.replace(/javascript|document|<|>|script|alert|[?=]|window|var|request/gi, "");
+
+            function sanitizeString(str) {
+                var div = document.createElement('div');
+                div.textContent = str;
+                return div.innerText;
+            }
+            comments = (comments === "") ? "N/A" : comments;
+            comments = sanitizeString(comments);
+            console.log(times);
+            for (var i = 0; i < times; i++) {
+                gamesReffed.push({
+                    position: position,
+                    division: division,
+                    gender: gender,
+                    date: date,
+                    comments: String(comments)
+                });
+            }
+            db.collection("users").doc(username).update({
+                "gamesReffed": gamesReffed
+            }).then(function() {
+                updateUser();
+                document.querySelector("#addGame").style.display = "none";
+                document.querySelector("#success").style.display = "block";
+            });
+        }
+    </script>
+</body>
+
+</html>

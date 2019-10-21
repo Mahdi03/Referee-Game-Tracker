@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Games</title>
+    <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body class="bodyForm">
+    <button id="signOutButton">Sign Out</button>
+    <h1>Edit Games:</h1>
+    <table id="gamesList">
+        <tr>
+            <th style="border-top: none; border-left: none;"></th>
+            <th>Comment:</th>
+            <th>Date (yyyy-mm-dd):</th>
+            <th>Division (Age-Group):</th>
+            <th>Gender:</th>
+            <th>Referee Position:</th>
+        </tr>
+    </table>
+    <footer>
+        <a href="privacyPolicy.html">Privacy Policy</a>
+        <a href="termsAndConditions.html">Terms and Conditions</a>
+        <p>Copyright &copy; Ayman Studios 2019. All Rights Reserved.&trade;</p>
+    </footer>
+    <!--Firebase Links-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.2.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.2.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.2.1/firebase-firestore.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <script src="loggedIn.js"></script>
+    <script src="signOut.js"></script>
+    <script>
+        var db = firebase.firestore();
+        var gamesList = document.querySelector("#gamesList");
+        var gameNumber = 0;
+        gamesReffed.forEach(function(gameObject) {
+            var tr = document.createElement("tr");
+            tr.setAttribute("gameNumber", gameNumber);
+            gameNumber++;
+            var deleteButton = document.createElement("span");
+            deleteButton.classList.add("deleteButton");
+            deleteButton.setAttribute("onclick", "deleteGame(this.parentElement.parentElement);");
+            deleteButton.innerHTML = "&minus;";
+            var tdDelete = document.createElement("td");
+            tdDelete.appendChild(deleteButton);
+            tr.appendChild(tdDelete);
+            Object.values(gameObject).forEach(function(gameDetail) {
+                var td = document.createElement("td");
+                var detail = "";
+                var type = "";
+                switch (gameDetail) {
+                    case "cr":
+                        detail = "Center";
+                        type = "position"
+                        break;
+                    case "ar":
+                        detail = "Assistant";
+                        type = "position";
+                        break;
+                    case "u8":
+                        detail = "U-8";
+                        type = "division";
+                        break;
+                    case "u10":
+                        detail = "U-10";
+                        type = "division";
+                        break;
+                    case "u12":
+                        detail = "U-12";
+                        type = "division";
+                        break;
+                    case "u14":
+                        detail = "U-14";
+                        type = "division";
+                        break;
+                    case "u16":
+                        detail = "U-16";
+                        type = "division";
+                        break;
+                    case "boys":
+                        detail = "Boys";
+                        type = "gender";
+                        break;
+                    case "girls":
+                        detail = "Girls";
+                        type = "gender";
+                        break;
+                    default:
+                        //console.log(new Date(gameDetail).toLocaleDateString('en', {year: "numeric", month: "numeric", day: "numeric"}));
+                        detail = gameDetail;
+                        type = "";
+                }
+                td.appendChild(document.createTextNode(detail));
+                td.setAttribute("type", type);
+                tr.appendChild(td);
+            });
+            gamesList.appendChild(tr);
+        });
+
+        function deleteGame(obj) {
+            var ready = confirm("Are you sure you would like to delete this game from the database? There is no going back if you do.");
+            if (ready) {
+                var pos, gen, div, date, comment;
+                comment = obj.cells[1].innerText;
+                date = obj.cells[2].innerText;
+                switch (obj.cells[3].innerText) {
+                    case "U-8":
+                        div = "u8";
+                        break;
+                    case "U-10":
+                        div = "u10";
+                        break;
+                    case "U-12":
+                        div = "u12";
+                        break;
+                    case "U-14":
+                        div = "u14";
+                        break;
+                    case "U-16":
+                        div = "u16";
+                        break;
+                }
+                gen = obj.cells[4].innerText.toLowerCase();
+                switch (obj.cells[5].innerText) {
+                    case "Center":
+                        pos = "cr";
+                        break;
+                    case "Assistant":
+                        pos = "ar";
+                        break;
+                }
+                var indexOfGameToBeDeleted = gamesReffed.findIndex(findGameWhereDetailsMatch);
+
+                function findGameWhereDetailsMatch(game) {
+                    var bool;
+                    if (game.position === pos && game.gender === gen && game.division === div && game.comments === comment) {
+                        bool = true;
+                    } else {
+                        bool = false;
+                    }
+                    return bool;
+                }
+                if (indexOfGameToBeDeleted > -1) {
+                    gamesReffed.splice(indexOfGameToBeDeleted, 1);
+                    db.collection("users").doc(username).update({
+                        "gamesReffed": gamesReffed
+                    }).then(function() {
+                        updateUser();
+                        alert("Your game has been successfully been deleted.");
+                    });
+                }
+                for (var j = 5; j > -1; j--) {
+                    obj.deleteCell(j);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>View My Games</title>
+    <meta name="description" content="Look at your completed games">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="md5.js"></script>
+</head>
+
+<body>
+    <button id="signOutButton">Sign Out</button>
+    <a href="addGame.html" style="position: absolute; left: 50%; transform: translate(-50%, 0px);">Add Another Game</a>
+    <a href="editGame.html" style="position: absolute; left: 50%; transform: translate(-50%, 30px);">Edit My Games</a>
+    <div class="column left">
+        <h1>My Games:</h1>
+        <table id="gamesList">
+            <tr>
+                <th>Comment:</th>
+                <th>Date (yyyy-mm-dd):</th>
+                <th>Division (Age-Group):</th>
+                <th>Gender:</th>
+                <th>Referee Position:</th>
+            </tr>
+        </table>
+    </div>
+    <div class="column right">
+        <h1>Statistics:</h1>
+        <table id="statisticsList">
+            <tr>
+                <th style="border-top: none; border-left: none; border-bottom: none;"></th>
+                <th colspan="3">Center:</th>
+                <th colspan="3">Assistant:</th>
+                <th rowspan="2">Total:</th>
+            </tr>
+            <tr>
+                <th style="border-top: none; border-left: none;"></th>
+                <th>Boys:</th>
+                <th>Girls:</th>
+                <th>Total:</th>
+                <th>Boys:</th>
+                <th>Girls:</th>
+                <th>Total:</th>
+            </tr>
+            <tr rowdivision="u8">
+                <th>U-8:</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr rowdivision="u10">
+                <th>U-10:</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr rowdivision="u12">
+                <th>U-12:</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr rowdivision="u14">
+                <th>U-14:</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr rowdivision="u16">
+                <th>U-16:</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr rowdivision="total">
+                <th>Total:</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <footer>
+        <a href="privacyPolicy.html">Privacy Policy</a>
+        <a href="termsAndConditions.html">Terms and Conditions</a>
+        <p>Copyright &copy; Ayman Studios 2019. All Rights Reserved.&trade;</p>
+    </footer>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.2.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.2.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.2.1/firebase-firestore.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <script src="loggedIn.js"></script>
+    <script src="signOut.js"></script>
+
+    <script>
+        var gamesList = document.querySelector("#gamesList");
+        var gameNumber = 0;
+        gamesReffed.forEach(function(gameObject) {
+            var tr = document.createElement("tr");
+            tr.setAttribute("gameNumber", gameNumber);
+            gameNumber++;
+            Object.values(gameObject).forEach(function(gameDetail) {
+                var td = document.createElement("td");
+                var detail = "";
+                var type = "";
+                switch (gameDetail) {
+                    case "cr":
+                        detail = "Center";
+                        type = "position"
+                        break;
+                    case "ar":
+                        detail = "Assistant";
+                        type = "position";
+                        break;
+                    case "u8":
+                        detail = "U-8";
+                        type = "division";
+                        break;
+                    case "u10":
+                        detail = "U-10";
+                        type = "division";
+                        break;
+                    case "u12":
+                        detail = "U-12";
+                        type = "division";
+                        break;
+                    case "u14":
+                        detail = "U-14";
+                        type = "division";
+                        break;
+                    case "u16":
+                        detail = "U-16";
+                        type = "division";
+                        break;
+                    case "boys":
+                        detail = "Boys";
+                        type = "gender";
+                        break;
+                    case "girls":
+                        detail = "Girls";
+                        type = "gender";
+                        break;
+                    default:
+                        //console.log(new Date(gameDetail).toLocaleDateString('en', {year: "numeric", month: "numeric", day: "numeric"}));
+                        detail = gameDetail;
+                        type = "date";
+                }
+                td.appendChild(document.createTextNode(detail));
+                td.setAttribute("type", type);
+                tr.appendChild(td);
+            });
+            gamesList.appendChild(tr);
+        });
+        //Statistics Global Variables List
+        var totalCenterPos = 0;
+        var totalAssistantPos = 0;
+        var totalU8Games = 0;
+        var totalU10Games = 0;
+        var totalU12Games = 0;
+        var totalU14Games = 0;
+        var totalU16Games = 0;
+        var u8BoysCenter = 0;
+        var u8GirlsCenter = 0;
+        var u8BoysAssistant = 0;
+        var u8GirlsAssistant = 0;
+        var u10BoysCenter = 0;
+        var u10GirlsCenter = 0;
+        var u10BoysAssistant = 0;
+        var u10GirlsAssistant = 0;
+        var u12BoysCenter = 0;
+        var u12GirlsCenter = 0;
+        var u12BoysAssistant = 0;
+        var u12GirlsAssistant = 0;
+        var u14BoysCenter = 0;
+        var u14GirlsCenter = 0;
+        var u14BoysAssistant = 0;
+        var u14GirlsAssistant = 0;
+        var u16BoysCenter = 0;
+        var u16GirlsCenter = 0;
+        var u16BoysAssistant = 0;
+        var u16GirlsAssistant = 0;
+
+        var statisticsList = document.querySelector("#statisticsList");
+        /*
+        //Count all major totals with one category each
+        var gameTRs = document.querySelectorAll("[gameNumber]");
+        for (var i = 0; i < gameTRs.length; i++) {
+            var tds = gameTRs[i].children;
+            for (var j = 1; j < tds.length; j++) {
+                var type = tds[j].getAttribute("type");
+                var value = tds[j].innerText;
+                if (type === "position") {
+                    if (value === "Center") {
+                        totalCenterPos++;
+                    } else if (value === "Assistant") {
+                        totalAssistantPos++;
+                    }
+                } else if (type === "division") {
+                    switch (value) {
+                        case "U-8":
+                            totalU8Games++;
+                            break;
+                        case "U-10":
+                            totalU10Games++;
+                            break;
+                        case "U-12":
+                            totalU12Games++;
+                            break;
+                        case "U-14":
+                            totalU14Games++;
+                            break;
+                        case "U-16":
+                            totalU16Games++;
+                            break;
+                    }
+                } else if (type === "gender") {
+                    if (value === "Boys") {
+                        totalBoysGames++;
+                    } else if (value === "Girls") {
+                        totalGirlsGames++;
+                    }
+                }
+            }
+        }*/
+        // Use the reffedGames Object to iterate through and count each and every
+        // type of games categorically
+        for (var p = 0; p < gamesReffed.length; p++) {
+            var division = gamesReffed[p].division;
+            var gender = gamesReffed[p].gender;
+            var position = gamesReffed[p].position;
+            switch (division) {
+                case "u8":
+                    totalU8Games++;
+                    switch (position) {
+                        case "cr":
+                            if (gender === "boys") {
+                                u8BoysCenter++;
+                            } else if (gender === "girls") {
+                                u8GirlsCenter++;
+                            }
+                            break;
+                        case "ar":
+                            if (gender === "boys") {
+                                u8BoysAssistant++;
+                            } else if (gender === "girls") {
+                                u8GirlsAssistant++;
+                            }
+                            break;
+                    }
+                    break;
+                case "u10":
+                    totalU10Games++;
+                    switch (position) {
+                        case "cr":
+                            if (gender === "boys") {
+                                u10BoysCenter++;
+                            } else if (gender === "girls") {
+                                u10GirlsCenter++;
+                            }
+                            break;
+                        case "ar":
+                            if (gender === "boys") {
+                                u10BoysAssistant++;
+                            } else if (gender === "girls") {
+                                u10GirlsAssistant++;
+                            }
+                            break;
+                    }
+                    break;
+                case "u12":
+                    totalU12Games++;
+                    switch (position) {
+                        case "cr":
+                            if (gender === "boys") {
+                                u12BoysCenter++;
+                            } else if (gender === "girls") {
+                                u12GirlsCenter++;
+                            }
+                            break;
+                        case "ar":
+                            if (gender === "boys") {
+                                u12BoysAssistant++;
+                            } else if (gender === "girls") {
+                                u12GirlsAssistant++;
+                            }
+                            break;
+                    }
+                    break;
+                case "u14":
+                    totalU14Games++;
+                    switch (position) {
+                        case "cr":
+                            if (gender === "boys") {
+                                u14BoysCenter++;
+                            } else if (gender === "girls") {
+                                u14GirlsCenter++;
+                            }
+                            break;
+                        case "ar":
+                            if (gender === "boys") {
+                                u14BoysAssistant++;
+                            } else if (gender === "girls") {
+                                u14GirlsAssistant++;
+                            }
+                            break;
+                    }
+                    break;
+                case "u16":
+                    totalU16Games++;
+                    switch (position) {
+                        case "cr":
+                            if (gender === "boys") {
+                                u16BoysCenter++;
+                            } else if (gender === "girls") {
+                                u16GirlsCenter++;
+                            }
+                            break;
+                        case "ar":
+                            if (gender === "boys") {
+                                u16BoysAssistant++;
+                            } else if (gender === "girls") {
+                                u16GirlsAssistant++;
+                            }
+                            break;
+                    }
+                    break;
+            }
+            switch (position) {
+                case "cr":
+                    totalCenterPos++;
+                    break;
+                case "ar":
+                    totalAssistantPos++;
+                    break;
+            }
+
+        }
+        //Add All of the values to the table
+        for (var k = 0, row; row = statisticsList.rows[k]; k++) {
+            //row is a variable here
+            var attr = row.getAttribute("rowdivision");
+            for (var l = 0, col; col = row.cells[l]; l++) {
+                //col is a variable here
+                if (attr === "u8" && l === 1) {
+                    col.innerHTML = u8BoysCenter;
+                } else if (attr === "u8" && l === 2) {
+                    col.innerHTML = u8GirlsCenter;
+                } else if (attr === "u8" && l === 3) {
+                    col.innerHTML = u8GirlsCenter + u8BoysCenter;
+                } else if (attr === "u8" && l === 4) {
+                    col.innerHTML = u8BoysAssistant;
+                } else if (attr === "u8" && l === 5) {
+                    col.innerHTML = u8GirlsAssistant;
+                } else if (attr === "u8" && l === 6) {
+                    col.innerHTML = u8BoysAssistant + u8GirlsAssistant;
+                } else if (attr === "u8" && l === 7) {
+                    col.innerHTML = totalU8Games;
+                } else if (attr === "u10" && l === 1) {
+                    col.innerHTML = u10BoysCenter;
+                } else if (attr === "u10" && l === 2) {
+                    col.innerHTML = u10GirlsCenter;
+                } else if (attr === "u10" && l === 3) {
+                    col.innerHTML = u10BoysCenter + u10GirlsCenter;
+                } else if (attr === "u10" && l === 4) {
+                    col.innerHTML = u10BoysAssistant;
+                } else if (attr === "u10" && l === 5) {
+                    col.innerHTML = u10GirlsAssistant;
+                } else if (attr === "u10" && l === 6) {
+                    col.innerHTML = u10BoysAssistant + u10GirlsAssistant;
+                } else if (attr === "u10" && l === 7) {
+                    col.innerHTML = totalU10Games;
+                } else if (attr === "u12" && l === 1) {
+                    col.innerHTML = u12BoysCenter;
+                } else if (attr === "u12" && l === 2) {
+                    col.innerHTML = u12GirlsCenter;
+                } else if (attr === "u12" && l === 3) {
+                    col.innerHTML = u12BoysCenter + u12GirlsCenter;
+                } else if (attr === "u12" && l === 4) {
+                    col.innerHTML = u12BoysAssistant;
+                } else if (attr === "u12" && l === 5) {
+                    col.innerHTML = u12GirlsAssistant;
+                } else if (attr === "u12" && l === 6) {
+                    col.innerHTML = u12BoysAssistant + u12GirlsAssistant;
+                } else if (attr === "u12" && l === 7) {
+                    col.innerHTML = totalU12Games;
+                } else if (attr === "u14" && l === 1) {
+                    col.innerHTML = u14BoysCenter;
+                } else if (attr === "u14" && l === 2) {
+                    col.innerHTML = u14GirlsCenter;
+                } else if (attr === "u14" && l === 3) {
+                    col.innerHTML = u14BoysCenter + u14GirlsCenter;
+                } else if (attr === "u14" && l === 4) {
+                    col.innerHTML = u14BoysAssistant;
+                } else if (attr === "u14" && l === 5) {
+                    col.innerHTML = u14GirlsAssistant;
+                } else if (attr === "u14" && l === 6) {
+                    col.innerHTML = u14BoysAssistant + u14GirlsAssistant;
+                } else if (attr === "u14" && l === 7) {
+                    col.innerHTML = totalU14Games;
+                } else if (attr === "u16" && l === 1) {
+                    col.innerHTML = u16BoysCenter;
+                } else if (attr === "u16" && l === 2) {
+                    col.innerHTML = u16GirlsCenter;
+                } else if (attr === "u16" && l === 3) {
+                    col.innerHTML = u16BoysCenter + u16GirlsCenter;
+                } else if (attr === "u16" && l === 4) {
+                    col.innerHTML = u16BoysAssistant;
+                } else if (attr === "u16" && l === 5) {
+                    col.innerHTML = u16GirlsAssistant;
+                } else if (attr === "u16" && l === 6) {
+                    col.innerHTML = u16BoysAssistant + u16GirlsAssistant;
+                } else if (attr === "u16" && l === 7) {
+                    col.innerHTML = totalU16Games;
+                } else if (attr === "total" && l === 1) {
+                    col.innerHTML = u8BoysCenter + u10BoysCenter + u12BoysCenter + u14BoysCenter + u16BoysCenter;
+                } else if (attr === "total" && l === 2) {
+                    col.innerHTML = u8GirlsCenter + u10GirlsCenter + u12GirlsCenter + u14GirlsCenter + u16BoysCenter;
+                } else if (attr === "total" && l === 3) {
+                    col.innerHTML = totalCenterPos;
+                } else if (attr === "total" && l === 4) {
+                    col.innerHTML = u8BoysAssistant + u10BoysAssistant + u12BoysAssistant + u14BoysAssistant + u16BoysAssistant;
+                } else if (attr === "total" && l === 5) {
+                    col.innerHTML = u8GirlsAssistant + u10GirlsAssistant + u12GirlsAssistant + u14GirlsAssistant + u16GirlsAssistant;
+                } else if (attr === "total" && l === 6) {
+                    col.innerHTML = totalAssistantPos;
+                } else if (attr === "total" && l === 7) {
+                    col.innerHTML = gamesList.rows.length - 1;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

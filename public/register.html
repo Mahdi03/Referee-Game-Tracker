@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="md5.js"></script>
+</head>
+
+<body class="bodyForm">
+    <div id="register">
+        <div id="form">
+            <form name="register" action="" method="POST" onsubmit="event.preventDefault()">
+                <h1>Register Now:</h1>
+                <table>
+                    <tr>
+                        <td colspan="2">Already have an account? Login <a href="login.html">here</a>.</td>
+                    </tr>
+                    <tr>
+                        <th>Full name: </th>
+                        <td><input type="text" name="fullName" required /></td>
+                    </tr>
+                    <tr>
+                        <th>Choose a username: </th>
+                        <td><input type="text" name="username" required /></td>
+                    </tr>
+                    <tr>
+                        <th>Choose a password: </th>
+                        <td><input type="password" name="password" minlength="7" required /></td>
+                    </tr>
+                    <tr>
+                        <th>Email address: </th>
+                        <td><input type="email" name="emailAddress" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button id="registerButton">Register Now!!</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <a href="privacyPolicy.html">Privacy Policy</a>
+        <a href="termsAndConditions.html">Terms and Conditions</a>
+        <p>Copyright &copy; Ayman Studios 2019. All Rights Reserved.&trade;</p>
+    </footer>
+    <!--Firebase Links-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.2.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.2.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.2.1/firebase-firestore.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <!--Script To Handle Form-->
+    <script>
+        //Global Vars
+        var db = firebase.firestore();
+        var registerButton = document.querySelector("#registerButton");
+        //Main Register Function
+        registerButton.onclick = function() {
+            //Locally Global Variables
+            var fullName = document.forms["register"]["fullName"].value;
+            var username = document.forms["register"]["username"].value.toLowerCase();
+            //The MD5 is a way to hash the password, that way the real password is safe and only the hash is used
+            var password = md5(document.forms["register"]["password"].value);
+            var emailAddress = document.forms["register"]["emailAddress"].value;
+            //Checks The Database If The Username Is Already Taken Or Not
+            db.collection("users").where("username", "==", username).get()
+                .then(function(querySnapshot) {
+                    console.log(0);
+                    //Checks Each Individual Result -- If there are no results, than this code will not run
+                    querySnapshot.forEach(function(doc) {
+                        //If any result exists, stop here
+                        console.log(1);
+                        if (doc.data()) {
+                            throw "Error";
+                        }
+                    });
+                    //If not
+                    console.log(3);
+                    //Add All Of The User Info To The Database
+                    db.collection("users").doc(username).set({
+                            fullName: fullName,
+                            username: username,
+                            password: password,
+                            emailAddress: emailAddress,
+                            gamesReffed: []
+                        })
+                        .then(function() {
+                            console.log(4);
+                            //If it succeeds, give user the heads up and then take them to their new homepage
+                            alert("Your account under the username " + username + " has been sucessfully created. You will now be redirected to your homepage.");
+                            //Place Code Underneath to Handle Keeping user Logged In For Present and Future Visits, along with redirecting to a homepage
+                            //Code Goes Here
+                            db.collection("users").doc(username).get().then(function(doc) {
+                                if (doc.exists) {
+                                    localStorage.setItem("loggedIn", JSON.stringify(doc.data()));
+                                }
+                                //alert(localStorage.getItem("loggedIn"));
+                                window.location.replace("home.html");
+                            });
+                        })
+                        .catch(function(error) {
+                            console.log(5);
+                            //If it fails, tell user to try again later (we don't care about the error message during production, because it is unlikely after our many tests)
+                            alert("I'm sorry but this username is already taken!! Please Try Another One");
+                            console.log(error);
+                        });
+                })
+                .catch(function(error) {
+                    console.log(6);
+                    //If checking the database originally for duplicate usernames fails, then give the user the same warning as above
+                    alert("I'm sorry but this username is already taken!! Please Try Another One");
+                    console.log(error);
+                });
+        };
+    </script>
+</body>
+
+</html>
