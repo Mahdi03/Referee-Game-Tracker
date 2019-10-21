@@ -218,6 +218,10 @@ h1 {
     word-wrap: break-word;
 }
 
+#gamesList th[onclick]:hover {
+    cursor: pointer;
+}
+
 .deleteButton {
     border: 1px solid grey;
     font-size: 20px;
