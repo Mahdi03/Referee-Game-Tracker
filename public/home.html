@@ -13,25 +13,27 @@
 
 <body>
     <ul>
-        <li><a href="home.html">Home</a></li>
+        <li><a class="active" href="home.html">Home</a></li>
         <!--My Games-->
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">My Games</a>
             <div class="dropdown-content">
                 <a href="myGames.html">View My Games</a>
-                <a href="myStatistics.html">View My Statistics</a>
+                <a href="myAnalytics.html">View My Analytics</a>
             </div>
         </li>
         <!--Add A Game-->
         <li><a href="addGame.html">Add A Game</a></li>
         <!--Edit My Games-->
         <li>
-            <a class="active" href="editGame.html">Edit My Games</a>
+            <a href="editGame.html">Edit My Games</a>
         </li>
         <li style="float:right"><a id="signOutButton" href="#">Sign Out</a></li>
     </ul>
+    <!--
     <a href="addGame.html" style="position: absolute; left: 50%; transform: translate(-50%, 0px);">Add Another Game</a>
     <a href="editGame.html" style="position: absolute; left: 50%; transform: translate(-50%, 30px);">Edit My Games</a>
+    -->
     <div class="column left">
         <h1>My Games:</h1>
         <table id="gamesList">
@@ -45,7 +47,7 @@
         </table>
     </div>
     <div class="column right">
-        <h1>Statistics:</h1>
+        <h1>Analytics:</h1>
         <table id="statisticsList">
             <tr>
                 <th style="border-top: none; border-left: none; border-bottom: none;"></th>
@@ -142,6 +144,14 @@
     <script>
         var gamesList = document.querySelector("#gamesList");
         var gameNumber = 0;
+        if (gamesReffed === []) {
+            function insertAfter(newNode, referenceNode) {
+                referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+            }
+            var pNotification = document.createElement("p");
+            pNotification.innerHTML = "After you start adding games, they will show up here.";
+            insertAfter(pNotification, gamesList);
+        }
         gamesReffed.forEach(function(gameObject) {
             var tr = document.createElement("tr");
             tr.setAttribute("gameNumber", gameNumber);

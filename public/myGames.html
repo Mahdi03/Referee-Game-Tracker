@@ -18,8 +18,8 @@
         <li class="dropdown">
             <a href="javascript:void(0)" class="active dropbtn">My Games</a>
             <div class="dropdown-content">
-                <a href="myGames.html">View My Games</a>
-                <a href="myStatistics.html">View My Statistics</a>
+                <a class="active" style="color: white;" href="myGames.html">View My Games</a>
+                <a href="myAnalytics.html">View My Analytics</a>
             </div>
         </li>
         <!--Add A Game-->
@@ -57,6 +57,14 @@
     <script>
         var gamesList = document.querySelector("#gamesList");
         var gameNumber = 0;
+        if (gamesReffed === []) {
+            function insertAfter(newNode, referenceNode) {
+                referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+            }
+            var pNotification = document.createElement("p");
+            pNotification.innerHTML = "After you start adding games, they will show up here.";
+            insertAfter(pNotification, gamesList);
+        }
         gamesReffed.forEach(function(gameObject) {
             var tr = document.createElement("tr");
             tr.setAttribute("gameNumber", gameNumber);
