@@ -75,15 +75,12 @@ li.dropdown {
 
 footer {
     /*position: absolute;*/
+    margin-top: 30px;
     float: left;
     bottom: 0;
     width: 100%;
     text-align: center;
     /*background-color: #f1f1f1;*/
-}
-
-footer a {
-    display: block;
 }
 
 .bodyForm {
@@ -186,13 +183,13 @@ footer a {
 
 .column.left {
     float: left;
-    width: 47%;
+    width: 50%;
     overflow: auto;
 }
 
 .column.right {
     float: right;
-    width: 47%;
+    width: 50%;
     overflow: auto;
 }
 
@@ -205,6 +202,7 @@ h1 {
     text-align: center;
     margin: 0 auto;
     border-collapse: collapse;
+    overflow: hidden;
 }
 
 #gamesList th,
@@ -218,8 +216,34 @@ h1 {
     word-wrap: break-word;
 }
 
+#gamesList th[onclick] {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 #gamesList th[onclick]:hover {
     cursor: pointer;
+}
+
+th,
+td {
+    position: relative;
+}
+
+#gamesList th[onclick]:hover::after,
+#gamesList td[onclick]:hover::after {
+    content: "";
+    position: absolute;
+    background-color: rgba(29, 162, 214, 0.3);
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
 }
 
 .deleteButton {
