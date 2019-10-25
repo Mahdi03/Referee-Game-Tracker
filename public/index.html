@@ -4,14 +4,44 @@
 <head>
     <title>Referee Game Tracker</title>
     <link href="styles.css" rel="stylesheet" />
+    <style>
+        p {
+            width: 70%;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <!--My Games-->
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="active dropbtn">My Games</a>
+            <div class="dropdown-content">
+                <a class="active" style="color: white;" href="myGames.html">View My Games</a>
+                <a href="myAnalytics.html">View My Analytics</a>
+            </div>
+        </li>
+        <!--Add A Game-->
+        <li><a href="addGame.html">Add A Game</a></li>
+        <!--Edit My Games-->
+        <li>
+            <a href="editGame.html">Edit My Games</a>
+        </li>
+        <li style="float:right"><a id="signOutButton" href="#">Login/Register</a></li>
+    </ul>
+
     <h1>Referee Game Tracker</h1>
-    <button id="signOutButton">Login/Register</button>
-    <p>Need a way to keep track of all of the soccer games that you have Refereed? Fret no more, for you have come to the right place. Simply register with a name and and email, and then get started with adding your games to your database.</p>
+    <p>Need a way to keep track of all of the soccer games that you have refereed? Fret no more, for you have come to the right place. Simply register with a name and an email, and then immediately get started with adding your games to your database.</p>
+    <h2>Step 1 - Register:</h2>
+    <img src="registerIMG.jpg" alt="Image of Easy Simple Registration" />
+    <h2>Step 2 - Add Games:</h2>
+    <img src="addGameButtonIMG.jpg" alt="Button to click to add games" />
+    <img src="addGameIMG.jpg" alt="How to add a game to the database" />
+    <h2>Step 3 - Enjoy:</h2>
     <footer>
-        <a href="privacyPolicy.html">Privacy Policy</a>
+        <a href="privacyPolicy.html">Privacy Policy</a><br />
         <a href="termsAndConditions.html">Terms and Conditions</a>
         <p>Copyright &copy; Ayman Studios 2019. All Rights Reserved.&trade;</p>
     </footer>
