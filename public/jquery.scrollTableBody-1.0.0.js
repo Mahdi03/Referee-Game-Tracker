@@ -25,8 +25,7 @@
         var existingMarginBottom = table.css('margin-bottom');
         table.css('margin-bottom', 0);
         var rowHeight = table.find('tbody tr:first').outerHeight();
-        var tableHeight = rowHeight * options.rowsToDisplay;
-
+        var tableHeight = rowHeight * options.rowsToDisplay + 15;
         var headerTable = $('<table id="gamesList" style="table-layout:fixed;width:auto;margin-bottom:0; margin: 0 auto;" class="jqstb-header-table ' + existingClasses + '"><thead><tr><td></td></tr></thead></table>'),
             footerTable = $('<table style="table-layout:fixed;width:auto;margin-bottom:' + existingMarginBottom + ';" class="jqstb-footer-table ' + existingClasses + '"><tfoot><tr><td></td></tr></tfoot></table>'),
             scrollDiv = '<div class="jqstb-scroll" style="height:' + tableHeight + 'px;overflow-y:auto;display:inline-block;"></div>';
