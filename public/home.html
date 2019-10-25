@@ -36,26 +36,29 @@
     -->
     <div class="column left">
         <h1>My Games:</h1>
-        <table id="gamesList">
-            <thead>
-                <tr>
-                    <th>Comment:</th>
-                    <th onclick="sortDate()">Date (yyyy-mm-dd):
-                        <div id="dateDirection">&#8691;</div>
-                    </th>
-                    <th onclick="sortDivision()">Division (Age-Group):
-                        <div id="divisionDirection">&#8691;</div>
-                    </th>
-                    <th onclick="sortGender()">Gender:
-                        <div id="genderDirection">&#8691;</div>
-                    </th>
-                    <th onclick="sortPosition()">Referee Position:
-                        <div id="positionDirection">&#8691;</div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody id="gamesTableInput"></tbody>
-        </table>
+        <div style="margin: 0 auto; text-align: center;">
+
+            <table id="gamesList">
+                <thead>
+                    <tr>
+                        <th>Comment:</th>
+                        <th onclick="sortDate()">Date (yyyy-mm-dd):
+                            <div id="dateDirection">&#8691;</div>
+                        </th>
+                        <th onclick="sortDivision()">Division (Age-Group):
+                            <div id="divisionDirection">&#8691;</div>
+                        </th>
+                        <th onclick="sortGender()">Gender:
+                            <div id="genderDirection">&#8691;</div>
+                        </th>
+                        <th onclick="sortPosition()">Referee Position:
+                            <div id="positionDirection">&#8691;</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="gamesTableInput"></tbody>
+            </table>
+        </div>
     </div>
     <div class="column right">
         <h1>Analytics:</h1>
@@ -151,6 +154,9 @@
     <script src="/__/firebase/init.js"></script>
     <script src="loggedIn.js"></script>
     <script src="signOut.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery.scrollTableBody-1.0.0.js"></script>
+
 
     <script>
         var gamesTableInput = document.querySelector("#gamesTableInput");
@@ -237,6 +243,8 @@
             });
         }
         listGames();
+        $("#gamesList").scrollTableBody();
+
         var dateClicked = 0;
         var divisionClicked = 0;
         var genderClicked = 0;

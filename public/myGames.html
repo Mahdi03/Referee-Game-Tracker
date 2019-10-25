@@ -31,23 +31,28 @@
         <li style="float:right"><a id="signOutButton" href="#">Sign Out</a></li>
     </ul>
     <h1>My Games:</h1>
-    <table id="gamesList">
-        <tr>
-            <th>Comment:</th>
-            <th onclick="sortDate()">Date (yyyy-mm-dd):
-                <div id="dateDirection">&#8691;</div>
-            </th>
-            <th onclick="sortDivision()">Division (Age-Group):
-                <div id="divisionDirection">&#8691;</div>
-            </th>
-            <th onclick="sortGender()">Gender:
-                <div id="genderDirection">&#8691;</div>
-            </th>
-            <th onclick="sortPosition()">Referee Position:
-                <div id="positionDirection">&#8691;</div>
-            </th>
-        </tr>
-    </table>
+    <div style="margin: 0 auto; text-align: center;">
+        <table id="gamesList">
+            <thead>
+                <tr>
+                    <th>Comment:</th>
+                    <th onclick="sortDate()">Date (yyyy-mm-dd):
+                        <div id="dateDirection">&#8691;</div>
+                    </th>
+                    <th onclick="sortDivision()">Division (Age-Group):
+                        <div id="divisionDirection">&#8691;</div>
+                    </th>
+                    <th onclick="sortGender()">Gender:
+                        <div id="genderDirection">&#8691;</div>
+                    </th>
+                    <th onclick="sortPosition()">Referee Position:
+                        <div id="positionDirection">&#8691;</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="gamesTableInput"></tbody>
+        </table>
+    </div>
     <footer>
         <a href="privacyPolicy.html">Privacy Policy</a><br />
         <a href="termsAndConditions.html">Terms and Conditions</a>
@@ -62,8 +67,11 @@
     <script src="/__/firebase/init.js"></script>
     <script src="loggedIn.js"></script>
     <script src="signOut.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery.scrollTableBody-1.0.0.js"></script>
+
     <script>
-        var gamesList = document.querySelector("#gamesList");
+        var gamesTableInput = document.querySelector("#gamesTableInput");
         var gameNumber = 0;
         if (gamesReffed === []) {
             function insertAfter(newNode, referenceNode) {
@@ -71,16 +79,16 @@
             }
             var pNotification = document.createElement("p");
             pNotification.innerHTML = "After you start adding games, they will show up here.";
-            insertAfter(pNotification, gamesList);
+            insertAfter(pNotification, gamesTableInput);
         }
 
         function deleteGamesFromTable() {
-            var tableRows = gamesList.querySelectorAll("tr");
+            var tableRows = gamesTableInput.querySelectorAll("tr");
             for (var f = 1; f < tableRows.length; f++) {
                 tableRows[f].parentNode.removeChild(tableRows[f]);
                 /*
                 for (var j = 4; j > -1; j--) {
-                    gamesList.querySelectorAll("tr")[f].deleteCell(j);
+                    gamesTableInput.querySelectorAll("tr")[f].deleteCell(j);
                     console.log("yay");
                 }
                 */
@@ -143,10 +151,12 @@
                     td.setAttribute("type", type);
                     tr.appendChild(td);
                 });
-                gamesList.appendChild(tr);
+                gamesTableInput.appendChild(tr);
             });
         }
         listGames();
+        $("#gamesList").scrollTableBody();
+
         var dateClicked = 0;
         var divisionClicked = 0;
         var genderClicked = 0;
