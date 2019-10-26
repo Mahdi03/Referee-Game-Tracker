@@ -57,7 +57,7 @@
                     db.collection("users").where("username", "==", username).get().then(function(query) {
                         query.forEach(function(doc) {
                             if (doc.data().password === password) {
-                                alert("Welcome back!! You will now be redirected to your homepage");
+                                //alert("Welcome back!! You will now be redirected to your homepage");
                                 success = true;
                                 //Place Code Underneath to Handle Keeping user Logged In For Present and Future Visits, along with redirecting to a homepage
                                 //Code Goes Here
@@ -78,7 +78,7 @@
                         }
                     }).catch(function(error) {
                         //If checking the database originally for the username fails, then give the user a warning
-                        alert("This username does not exist. Try again or sign up if you haven't already");
+                        alert("Either the username or the password is incorrect. Try again or sign up if you haven't already");
                     });
                 } catch (error) {
                     if (error === false) {
