@@ -6,7 +6,7 @@
     <link href="styles.css" rel="stylesheet" />
 </head>
 
-<body class="bodyForm">
+<body class="bodyForm" style="text-align: center;">
     <ul>
         <li><a href="home.html">Home</a></li>
         <!--My Games-->
@@ -26,6 +26,7 @@
         <li style="float:right"><a id="signOutButton" href="#">Sign Out</a></li>
     </ul>
     <h1>Edit Games:</h1>
+    <button id="saveChangesButton">Save Changes</button>
     <table id="gamesList">
         <tr>
             <th style="border-top: none; border-left: none;"></th>
@@ -52,7 +53,7 @@
     <script src="loggedIn.js"></script>
     <script src="signOut.js"></script>
     <script>
-        var db = firebase.firestore();
+        //var db = firebase.firestore();
         var gamesList = document.querySelector("#gamesList");
         var gameNumber = 0;
         gamesReffed.forEach(function(gameObject) {
@@ -68,51 +69,120 @@
             tr.appendChild(tdDelete);
             Object.values(gameObject).forEach(function(gameDetail) {
                 var td = document.createElement("td");
+                var makeContentEditableComment = false;
+                var makeSelectDate = false;
+                var makeSelectDivision = false;
+                var makeSelectGender = false;
+                var makeSelectPosition = false;
                 var detail = "";
                 var type = "";
+                var value = "";
                 switch (gameDetail) {
                     case "cr":
+                        makeSelectPosition = true;
                         detail = "Center";
-                        type = "position"
+                        type = "position";
+                        value = "cr";
                         break;
                     case "ar":
+                        makeSelectPosition = true;
                         detail = "Assistant";
                         type = "position";
+                        value = "ar";
                         break;
                     case "u8":
+                        makeSelectDivision = true;
                         detail = "U-8";
                         type = "division";
+                        value = "u8";
                         break;
                     case "u10":
+                        makeSelectDivision = true;
                         detail = "U-10";
                         type = "division";
+                        value = "u10";
                         break;
                     case "u12":
+                        makeSelectDivision = true;
                         detail = "U-12";
                         type = "division";
+                        value = "u12";
                         break;
                     case "u14":
+                        makeSelectDivision = true;
                         detail = "U-14";
                         type = "division";
+                        value = "u14";
                         break;
                     case "u16":
+                        makeSelectDivision = true;
                         detail = "U-16";
                         type = "division";
+                        value = "u16";
                         break;
                     case "boys":
+                        makeSelectGender = true;
                         detail = "Boys";
                         type = "gender";
+                        value = "boys";
                         break;
                     case "girls":
+                        makeSelectGender = true;
                         detail = "Girls";
                         type = "gender";
+                        value = "girls";
                         break;
                     default:
                         //console.log(new Date(gameDetail).toLocaleDateString('en', {year: "numeric", month: "numeric", day: "numeric"}));
+                        if (gameDetail.length === 10 && !isNaN(new Date(gameDetail).getDate())) {
+                            //Then This is a date
+                            makeSelectDate = true;
+                            type = "date";
+                        } else if (gameDetail.length === 0 || gameDetail === "") {
+                            makeSelectDate = true;
+                            type = "date";
+                        } else {
+                            //Then by POE this is a comment
+                            makeContentEditableComment = true;
+                            type = "comment";
+                        }
                         detail = gameDetail;
-                        type = "";
                 }
-                td.appendChild(document.createTextNode(detail));
+                if (makeContentEditableComment === true) {
+                    td.innerHTML = "<textarea name='comments'>" + detail + "</textarea>";
+                } else if (makeSelectDate === true) {
+                    td.innerHTML = "<input name='date' type='date' value='" + detail + "' />";
+                } else if (makeSelectDivision === true) {
+                    switch (value) {
+                        case "u8":
+                            td.innerHTML = "<select name='division'><option value='u8' selected>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option></select>";
+                            break;
+                        case "u10":
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10' selected>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option></select>";
+                            break;
+                        case "u12":
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12' selected>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option></select>";
+                            break;
+                        case "u14":
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14' selected>U-14</option><option value='u16'>U-16</option></select>";
+                            break;
+                        case "u16":
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16' selected>U-16</option></select>";
+                            break;
+                    }
+                } else if (makeSelectGender === true) {
+                    if (value === "boys") {
+                        td.innerHTML = "<select name='gender'><option value='boys' selected>Boys</option><option value='girls'>Girls</option></select>";
+                    } else if (value === "girls") {
+                        td.innerHTML = "<select name='gender'><option value='boys'>Boys</option><option value='girls' selected>Girls</option></select>";
+                    }
+                } else if (makeSelectPosition === true) {
+                    if (value === "cr") {
+                        td.innerHTML = "<select name='position'><option value='cr' selected>Center</option><option value='ar'>Assistant</option></select>";
+                    } else if (value === "ar") {
+                        td.innerHTML = "<select name='position'><option value='cr'>Center</option><option value='ar' selected>Assistant</option></select>";
+                    }
+                }
                 td.setAttribute("type", type);
                 tr.appendChild(td);
             });
@@ -175,6 +245,68 @@
                     obj.deleteCell(j);
                 }
             }
+        }
+
+        function saveChanges() {
+            var newGamesList = [];
+            var TRs = gamesList.querySelectorAll("tr");
+            for (var c = 1; c < TRs.length; c++) {
+                var TDs = TRs[c].querySelectorAll("td");
+                var comments = "";
+                var date = "";
+                var division = "";
+                var gender = "";
+                var position = "";
+                for (var d = 1; d < TDs.length; d++) {
+                    var name = TDs[d].children[0].getAttribute("name");
+                    switch (name) {
+                        case "comments":
+                            comments = TDs[d].children[0].innerHTML;
+                            comments.replace(/javascript|document|<|>|script|alert|[?=]|window|var|request/gi, / /);
+
+                            function sanitizeString(str) {
+                                var div = document.createElement('div');
+                                div.textContent = str;
+                                return div.innerText;
+                            }
+                            comments = (comments === "") ? "N/A" : comments;
+                            comments = sanitizeString(comments);
+                            console.log(comments);
+                            break;
+                        case "date":
+                            date = TDs[d].children[0].value;
+                            console.log(date);
+                            break;
+                        case "division":
+                            division = TDs[d].children[0].value;
+                            console.log(division);
+                            break;
+                        case "gender":
+                            gender = TDs[d].children[0].value;
+                            console.log(gender);
+                            break;
+                        case "position":
+                            position = TDs[d].children[0].value;
+                            console.log(position);
+                            break;
+                    }
+                }
+                newGamesList.push({
+                    position: position,
+                    division: division,
+                    gender: gender,
+                    date: date,
+                    comments: String(comments)
+                });
+
+            }
+            console.log(newGamesList)
+            db.collection("users").doc(username).update({
+                "gamesReffed": newGamesList
+            }).then(function() {
+                updateUser();
+                window.location.reload();
+            });
         }
     </script>
 </body>

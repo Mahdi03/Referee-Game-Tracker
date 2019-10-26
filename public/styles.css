@@ -97,7 +97,10 @@ footer {
 
 #login *,
 #register *,
-#addGame * {
+#addGame *,
+#saveChangesButton,
+#gamesList input,
+#gamesList select {
     font-family: 'Slabo 27px', serif;
     font-size: 25px;
 }
@@ -154,13 +157,37 @@ footer {
     color: var(--login-or-register-input-text-color);
 }
 
+#gamesList input {
+    background-color: var(--login-or-register-input-background-color);
+    border-radius: 25px;
+    border: 2px dashed;
+    border-color: var(--login-or-register-input-border-color);
+    padding: 10px;
+    font-size: 20px;
+    color: var(--login-or-register-input-text-color);
+}
+
+#gamesList textarea,
+#gamesList select {
+    resize: none;
+    background-color: var(--login-or-register-input-background-color);
+    border-radius: 25px;
+    border: 2px dashed;
+    border-color: var(--login-or-register-input-border-color);
+    padding: 10px;
+    font-size: 20px;
+    color: var(--login-or-register-input-text-color);
+}
+
 #loginButton,
 #registerButton,
-#addGameButton {
+#addGameButton,
+#saveChangesButton {
     padding: 20px;
     border: none;
     border-radius: 25px;
     background-color: var(--login-or-register-button-background-color);
+    margin: 0 auto;
 }
 
 #loginButton:hover,
@@ -172,7 +199,9 @@ footer {
 #login table select *:hover,
 #register table select *:hover,
 #addGame table select *:hover,
-#addGame table input[type=date] {
+#addGame table input[type=date],
+input[type=date],
+select {
     cursor: pointer;
 }
 
