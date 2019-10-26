@@ -84,7 +84,7 @@
 
         function deleteGamesFromTable() {
             var tableRows = gamesTableInput.querySelectorAll("tr");
-            for (var f = 1; f < tableRows.length; f++) {
+            for (var f = 0; f < tableRows.length; f++) {
                 tableRows[f].parentNode.removeChild(tableRows[f]);
                 /*
                 for (var j = 4; j > -1; j--) {

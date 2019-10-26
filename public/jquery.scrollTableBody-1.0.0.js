@@ -87,7 +87,7 @@
             $footerTable.find('tfoot').replaceWith($dataTable.children('tfoot').clone());
 
             // Hide original caption, header, and footer
-            $dataTable.children('caption, thead, tfoot').hide();
+            $dataTable.children('caption, thead, tfoot').css("visibility", "collapse");
         });
     }
 
@@ -121,7 +121,7 @@
             });
 
             // Hide the inner table's header and footer when we're done 
-            $dataTable.children('thead, tfoot').hide();
+            $dataTable.children('thead, tfoot').css("visibility", "collapse");
         });
     }
 })(jQuery);

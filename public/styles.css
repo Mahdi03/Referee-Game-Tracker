@@ -273,7 +273,10 @@ td {
 
 #gamesTableInput {
     table-layout: fixed;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
     overflow-y: scroll;
+    width: 100%;
     height: 500px;
 }
 
