@@ -133,7 +133,6 @@
                         value = "girls";
                         break;
                     default:
-                        //console.log(new Date(gameDetail).toLocaleDateString('en', {year: "numeric", month: "numeric", day: "numeric"}));
                         if (gameDetail.length === 10 && !isNaN(new Date(gameDetail).getDate())) {
                             //Then This is a date
                             makeSelectDate = true;
@@ -262,7 +261,6 @@
                     switch (name) {
                         case "comments":
                             comments = TDs[d].children[0].value;
-                            alert(comments);
                             comments.replace(/javascript|document|<|>|script|alert|[?=]|window|var|request/gi, / /);
 
                             function sanitizeString(str) {
@@ -272,23 +270,18 @@
                             }
                             comments = (comments === "") ? "N/A" : comments;
                             comments = sanitizeString(comments);
-                            //console.log(comments);
                             break;
                         case "date":
                             date = TDs[d].children[0].value;
-                            //console.log(date);
                             break;
                         case "division":
                             division = TDs[d].children[0].value;
-                            //console.log(division);
                             break;
                         case "gender":
                             gender = TDs[d].children[0].value;
-                            //console.log(gender);
                             break;
                         case "position":
                             position = TDs[d].children[0].value;
-                            //console.log(position);
                             break;
                     }
                 }
@@ -301,10 +294,6 @@
                 });
 
             }
-            /*console.log(newGamesList == gamesReffed);
-            newGamesList.forEach(function(el) {
-                console.log(el);
-            });*/
             db.collection("users").doc(username).update({
                 "gamesReffed": newGamesList
             }).then(function() {
