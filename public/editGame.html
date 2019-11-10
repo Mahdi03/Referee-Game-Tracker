@@ -188,7 +188,7 @@
                         case "u16":
                             td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16' selected>U-16</option><option value='u19'>U-19</option></select>";
                             break;
-                        case "19":
+                        case "u19":
                             td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option><option value='u19' selected>U-19</option></select>";
                             break;
                     }
@@ -266,9 +266,7 @@
                         alert("Your game has been successfully been deleted.");
                     });
                 }
-                for (var j = 5; j > -1; j--) {
-                    obj.deleteCell(j);
-                }
+                gamesList.deleteRow(obj.rowIndex);
             }
         }
 
@@ -324,7 +322,7 @@
                 "gamesReffed": newGamesList
             }).then(function() {
                 updateUser();
-                window.location.reload();
+                window.location.replace("editGame.html");
             });
         }
         $("#gamesList").scrollTableBody();

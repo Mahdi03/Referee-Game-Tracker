@@ -210,7 +210,8 @@ footer {
 #addGame table select *:hover,
 #addGame table input[type=date],
 input[type=date],
-select {
+select,
+[onclick] {
     cursor: pointer;
 }
 
