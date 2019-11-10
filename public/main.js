@@ -547,7 +547,7 @@
             }
         }
         //Badge Eligibility
-        var intermediateEligibility = document.querySelector("#intermediateEligibilty");
+        var intermediateEligibility = document.querySelector("#intermediateEligibility");
         var advancedEligibility = document.querySelector("#advancedEligibility");
         var nationalEligiblity = document.querySelector("#nationalEligibilty");
         var eligible = "<span style='color: green;'>Eligible</span>";
