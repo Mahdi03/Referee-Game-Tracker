@@ -255,7 +255,7 @@
                 }
                 if (indexOfGameToBeDeleted > -1) {
                     gamesReffed.splice(indexOfGameToBeDeleted, 1);
-                    db.collection("users").doc(username).set({
+                    db.collection("users").doc(username).update({
                         "gamesReffed": gamesReffed
                     }).then(function() {
                         updateUser();
@@ -316,7 +316,7 @@
                 });
 
             }
-            db.collection("users").doc(username).set({
+            db.collection("users").doc(username).update({
                 "gamesReffed": newGamesList
             }).then(function() {
                 updateUser();
