@@ -59,7 +59,12 @@
     <script src="/__/firebase/init.js"></script>
     <script src="loggedIn.js"></script>
     <script src="signOut.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery.scrollTableBody-1.0.0.js"></script>
+
     <script>
+        $("#gamesList").scrollTableBody();
+
         var db = firebase.firestore();
         var gamesList = document.querySelector("#gamesList");
         var gameNumber = 0;
@@ -127,6 +132,12 @@
                         type = "division";
                         value = "u16";
                         break;
+                    case "u19":
+                        makeSelectDivision = true;
+                        detail = "U-19";
+                        type = "division";
+                        value = "u19";
+                        break;
                     case "boys":
                         makeSelectGender = true;
                         detail = "Boys";
@@ -161,19 +172,22 @@
                 } else if (makeSelectDivision === true) {
                     switch (value) {
                         case "u8":
-                            td.innerHTML = "<select name='division'><option value='u8' selected>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option></select>";
+                            td.innerHTML = "<select name='division'><option value='u8' selected>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option><option value='u19'>U-19</option></select>";
                             break;
                         case "u10":
-                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10' selected>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option></select>";
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10' selected>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option><option value='u19'>U-19</option></select>";
                             break;
                         case "u12":
-                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12' selected>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option></select>";
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12' selected>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option><option value='u19'>U-19</option></select>";
                             break;
                         case "u14":
-                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14' selected>U-14</option><option value='u16'>U-16</option></select>";
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14' selected>U-14</option><option value='u16'>U-16</option><option value='u19'>U-19</option></select>";
                             break;
                         case "u16":
-                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16' selected>U-16</option></select>";
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16' selected>U-16</option><option value='u19'>U-19</option></select>";
+                            break;
+                        case "19":
+                            td.innerHTML = "<select name='division'><option value='u8'>U-8</option><option value='u10'>U-10</option><option value='u12'>U-12</option><option value='u14'>U-14</option><option value='u16'>U-16</option><option value='u19' selected>U-19</option></select>";
                             break;
                     }
                 } else if (makeSelectGender === true) {
@@ -216,6 +230,9 @@
                         break;
                     case "U-16":
                         div = "u16";
+                        break;
+                    case "U-19":
+                        div = "u19";
                         break;
                 }
                 gen = obj.cells[4].innerText.toLowerCase();

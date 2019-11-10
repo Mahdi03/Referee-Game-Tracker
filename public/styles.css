@@ -26,12 +26,21 @@ ul {
     width: 100%;
 }
 
-.normalUL {
-    background-color: transparent;
-}
-
 li {
     float: left;
+}
+
+.normalUL {
+    background-color: transparent;
+    list-style-type: initial;
+    margin: initial;
+    padding: initial;
+    width: initial;
+    overflow: initial;
+}
+
+.normalUL li {
+    float: initial;
 }
 
 li a,
@@ -331,4 +340,18 @@ td {
 
 .deleteButton:hover {
     cursor: pointer;
+}
+
+#aysoBadgeEligibility {
+    text-align: center;
+    margin: 20px auto;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+#aysoBadgeEligibility th,
+#aysoBadgeEligibility td {
+    padding: 8px;
+    border: 1px solid gray;
+    border-collapse: collapse;
 }
