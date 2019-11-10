@@ -113,29 +113,28 @@
                 if (dateClicked % 2 === 1) {
                     resetArrDirection();
                     dateDirection.innerHTML = downArr;
-                    divisionDirection.innerHTMl =
-                        gamesReffed.sort(function(a, b) {
-                            var returnValue;
-                            if (new Date(a.date) > new Date(b.date)) {
-                                returnValue = 1;
-                            } else if (a.date === "" || b.date === "") {
-                                returnValue = 1;
-                            } else if (new Date(a.date) < new Date(b.date)) {
-                                returnValue = -1;
-                            } else if (new Date(a.date) === new Date(b.date)) {
-                                returnValue = 0;
-                            }
-                            return returnValue;
-                        });
+                    gamesReffed.sort(function(a, b) {
+                        var returnValue;
+                        if (a.date === "" || b.date === "") {
+                            returnValue = 1;
+                        } else if (new Date(a.date) > new Date(b.date)) {
+                            returnValue = 1;
+                        } else if (new Date(a.date) < new Date(b.date)) {
+                            returnValue = -1;
+                        } else if (new Date(a.date) === new Date(b.date)) {
+                            returnValue = 0;
+                        }
+                        return returnValue;
+                    });
                 } else if (dateClicked % 2 === 0) {
                     resetArrDirection();
                     dateDirection.innerHTML = upArr;
                     gamesReffed.sort(function(a, b) {
                         var returnValue;
-                        if (new Date(a.date) > new Date(b.date)) {
-                            returnValue = -1;
-                        } else if (a.date === "" || b.date === "") {
+                        if (a.date === "" || b.date === "") {
                             returnValue = 1;
+                        } else if (new Date(a.date) > new Date(b.date)) {
+                            returnValue = -1;
                         } else if (new Date(a.date) < new Date(b.date)) {
                             returnValue = 1;
                         } else if (new Date(a.date) === new Date(b.date)) {
