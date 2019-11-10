@@ -63,8 +63,6 @@
     <script src="jquery.scrollTableBody-1.0.0.js"></script>
 
     <script>
-        $("#gamesList").scrollTableBody();
-
         var db = firebase.firestore();
         var gamesList = document.querySelector("#gamesList");
         var gameNumber = 0;
@@ -325,6 +323,7 @@
                 window.location.reload();
             });
         }
+        $("#gamesList").scrollTableBody();
     </script>
 </body>
 
