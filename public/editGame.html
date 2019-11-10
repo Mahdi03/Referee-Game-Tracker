@@ -67,6 +67,7 @@
 
     <script>
         var db = firebase.firestore();
+        var gamesList = document.querySelector("#gamesList");
         var gamesTableInput = document.querySelector("#gamesTableInput");
         var gameNumber = 0;
         gamesReffed.forEach(function(gameObject) {
@@ -273,7 +274,7 @@
 
         function saveChanges() {
             var newGamesList = [];
-            var TRs = gamesTableInput.querySelectorAll("tr");
+            var TRs = gamesList.querySelectorAll("tr");
             for (var c = 1; c < TRs.length; c++) {
                 var TDs = TRs[c].querySelectorAll("td");
                 var comments = "";
