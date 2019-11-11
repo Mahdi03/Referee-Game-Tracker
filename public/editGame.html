@@ -4,7 +4,10 @@
 <head>
     <title>Edit Games</title>
     <link href="styles.css" rel="stylesheet" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+    <link href="https://pro.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+    </script>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: "ca-pub-8495483030877603",
@@ -15,26 +18,27 @@
 
 <body class="bodyForm" style="text-align: center;">
     <ul>
-        <li><a href="home.html">Home</a></li>
+        <li><a href="home.html" title="Go Home">Home</a></li>
         <!--My Games-->
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">My Games</a>
             <div class="dropdown-content">
-                <a href="myGames.html">View My Games</a>
-                <a href="myAnalytics.html">View My Analytics</a>
+                <a href="myGames.html" title="View My Games">View My Games</a>
+                <a href="myAnalytics.html" title="View My Analytics">View My Analytics</a>
             </div>
         </li>
         <!--Add A Game-->
-        <li><a href="addGame.html">Add A Game</a></li>
+        <li><a href="addGame.html" title="Add A Game">Add A Game</a></li>
         <!--Edit My Games-->
-        <li>
-            <a class="active" href="editGame.html">Edit My Games</a>
-        </li>
-        <li style="float:right"><a id="signOutButton" href="#">Sign Out</a></li>
+        <li><a class="active" href="editGame.html" title="Edit My Games">Edit My Games</a></li>
+        <li style="float:right"><a id="signOutButton" href="#" title="Sign Out">Sign Out</a></li>
     </ul>
     <h1>Edit Games:</h1>
-    <button id="saveChangesButton" onclick="saveChanges()">Save Changes</button>
+    <button id="saveChangesButton" onclick="saveChanges()" title="Save Changes"><i class="fal fa-save"></i></button>
     <br />
+    <br />
+    <i class="fas fa-cut"></i>
+    <i class="fas fa-analytics"></i>
     <table id="gamesList">
         <thead>
             <tr>
