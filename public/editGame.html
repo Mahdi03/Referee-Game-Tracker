@@ -18,27 +18,25 @@
 
 <body class="bodyForm" style="text-align: center;">
     <ul>
-        <li><a href="home.html" title="Go Home">Home</a></li>
+        <li><a href="home.html" title="Go Home"><i class="fas fa-home"></i> Home</a></li>
         <!--My Games-->
         <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">My Games</a>
+            <a href="javascript:void(0)" class="dropbtn" title="My Games"><i class="fas fa-futbol"></i></a>
             <div class="dropdown-content">
-                <a href="myGames.html" title="View My Games">View My Games</a>
-                <a href="myAnalytics.html" title="View My Analytics">View My Analytics</a>
+                <a href="myGames.html" title="View My Games"><i class="far fa-binoculars"></i> My Games</a>
+                <a href="myAnalytics.html" title="View My Analytics"><i class="far fa-chart-line"></i> My Analytics</a>
             </div>
         </li>
         <!--Add A Game-->
-        <li><a href="addGame.html" title="Add A Game">Add A Game</a></li>
+        <li><a href="addGame.html" title="Add A Game"><i class="fal fa-plus-circle"></i> Add Games</a></li>
         <!--Edit My Games-->
-        <li><a class="active" href="editGame.html" title="Edit My Games">Edit My Games</a></li>
-        <li style="float:right"><a id="signOutButton" href="#" title="Sign Out">Sign Out</a></li>
+        <li><a class="active" href="editGame.html" title="Edit My Games"><i class="fas fa-pencil-alt"></i> Edit Games</a></li>
+        <li style="float:right"><a id="signOutButton" href="#" title="Sign Out"><i class="far fa-sign-out"></i> Sign Out</a></li>
     </ul>
     <h1>Edit Games:</h1>
-    <button id="saveChangesButton" onclick="saveChanges()" title="Save Changes"><i class="fal fa-save"></i></button>
+    <button id="saveChangesButton" onclick="saveChanges()" title="Save Changes"><i class="fal fa-save"></i> Save</button>
     <br />
     <br />
-    <i class="fas fa-cut"></i>
-    <i class="fas fa-analytics"></i>
     <table id="gamesList">
         <thead>
             <tr>
@@ -72,6 +70,8 @@
 
     <script>
         var db = firebase.firestore();
+        //For Testing Purposes
+        //var gamesReffed = JSON.parse(localStorage.getItem("loggedIn")).gamesReffed;
         var gamesList = document.querySelector("#gamesList");
         var gamesTableInput = document.querySelector("#gamesTableInput");
         var gameNumber = 0;
@@ -79,12 +79,15 @@
             var tr = document.createElement("tr");
             tr.setAttribute("gameNumber", gameNumber);
             gameNumber++;
-            var deleteButton = document.createElement("span");
-            deleteButton.classList.add("deleteButton");
+            var deleteButton = document.createElement("i");
+            deleteButton.classList.add("far");
+            deleteButton.classList.add("fa-trash-alt");
             deleteButton.setAttribute("onclick", "deleteGame(this.parentElement.parentElement);");
-            deleteButton.innerHTML = "&minus;";
+            deleteButton.setAttribute("title", "Delete This Game");
+            //deleteButton.innerHTML = "&minus;";
             var tdDelete = document.createElement("td");
             tdDelete.appendChild(deleteButton);
+            //tdDelete.innerHTML += "<i class='far fa-trash-alt' style='color: red; font-size: 20px;'></i>";
             tr.appendChild(tdDelete);
             Object.values(gameObject).forEach(function(gameDetail) {
                 var td = document.createElement("td");

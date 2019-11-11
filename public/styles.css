@@ -24,6 +24,7 @@ ul {
     overflow: hidden;
     background-color: #333;
     width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 li {
@@ -37,6 +38,7 @@ li {
     padding: initial;
     width: initial;
     overflow: initial;
+    font-family: inherit;
 }
 
 .normalUL li {
@@ -107,6 +109,7 @@ footer {
 #login *,
 #register *,
 #addGame *,
+#addGameButton,
 #saveChangesButton,
 #gamesList input,
 #gamesList select {
@@ -341,6 +344,23 @@ td {
 
 .deleteButton:hover {
     cursor: pointer;
+}
+
+.fa-trash-alt {
+    font-size: 25px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: center;
+    color: red;
+}
+
+.fa-trash-alt:hover {
+    cursor: pointer;
+    color: gray;
 }
 
 #aysoBadgeEligibility {
