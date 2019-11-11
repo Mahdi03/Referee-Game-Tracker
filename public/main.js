@@ -97,9 +97,9 @@
             var divisionDirection = document.querySelector("#divisionDirection");
             var genderDirection = document.querySelector("#genderDirection");
             var positionDirection = document.querySelector("#positionDirection");
-            var upAndDownArr = "&#8691;";
-            var downArr = "&#8681;";
-            var upArr = "&#8679;";
+            var upAndDownArr = "<i class='fas fa-arrows-alt-v'></i>";
+            var downArr = "<i class='fas fa-long-arrow-alt-down'></i>";
+            var upArr = "<i class='fas fa-long-arrow-alt-up'></i>";
 
             function resetArrDirection() {
                 dateDirection.innerHTML = upAndDownArr;
