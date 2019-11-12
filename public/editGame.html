@@ -30,7 +30,7 @@
     </script>
 </head>
 
-<body class="bodyForm" style="text-align: center;">
+<body class="bodyForm" style="text-align: center;" onbeforeunload="alert('Your changes are being saved'); saveChanges();">
     <ul>
         <li><a href="home.html" title="Go Home"><i class="fas fa-home"></i> Home</a></li>
         <!--My Games-->
@@ -259,7 +259,7 @@
                         "gamesReffed": gamesReffed
                     }).then(function() {
                         updateUser();
-                        alert("Your game has been successfully been deleted.");
+                        alert("Don't forget to save your changes.");
                     });
                 }
                 gamesList.deleteRow(obj.rowIndex);
