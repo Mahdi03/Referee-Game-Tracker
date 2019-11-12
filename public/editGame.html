@@ -31,7 +31,6 @@
 </head>
 
 <body class="bodyForm" style="text-align: center;">
-    <script src="loggedIn.js"></script>
     <ul>
         <li><a href="home.html" title="Go Home"><i class="fas fa-home"></i> Home</a></li>
         <!--My Games-->
@@ -78,6 +77,7 @@
     <script src="/__/firebase/7.2.1/firebase-firestore.js"></script>
     <!-- Initialize Firebase -->
     <script src="/__/firebase/init.js"></script>
+    <script src="loggedIn.js"></script>
     <script src="signOut.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="jquery.scrollTableBody-1.0.0.js"></script>
@@ -237,37 +237,11 @@
             var ready = confirm("Are you sure you would like to delete this game from the database? There is no going back if you do.");
             if (ready) {
                 var pos, gen, div, date, comment;
-                comment = obj.cells[1].innerText;
-                date = obj.cells[2].innerText;
-                switch (obj.cells[3].innerText) {
-                    case "U-8":
-                        div = "u8";
-                        break;
-                    case "U-10":
-                        div = "u10";
-                        break;
-                    case "U-12":
-                        div = "u12";
-                        break;
-                    case "U-14":
-                        div = "u14";
-                        break;
-                    case "U-16":
-                        div = "u16";
-                        break;
-                    case "U-19":
-                        div = "u19";
-                        break;
-                }
-                gen = obj.cells[4].innerText.toLowerCase();
-                switch (obj.cells[5].innerText) {
-                    case "Center":
-                        pos = "cr";
-                        break;
-                    case "Assistant":
-                        pos = "ar";
-                        break;
-                }
+                comment = obj.cells[1].children[0].value;
+                date = obj.cells[2].children[0].value;
+                div = obj.cells[3].children[0].value;
+                gen = obj.cells[4].children[0].value;
+                pos = obj.cells[5].children[0].value;
                 var indexOfGameToBeDeleted = gamesReffed.findIndex(findGameWhereDetailsMatch);
 
                 function findGameWhereDetailsMatch(game) {
