@@ -451,102 +451,151 @@
                         //col is a variable here
                         if (attr === "u8" && l === 1) {
                             col.innerHTML = u8BoysCenter;
+                            col.setAttribute("title", col.innerHTML + " U-8 Boys Centers");
                         } else if (attr === "u8" && l === 2) {
                             col.innerHTML = u8GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-8 Girls Centers");
                         } else if (attr === "u8" && l === 3) {
                             col.innerHTML = u8GirlsCenter + u8BoysCenter;
+                            col.setAttribute("title", col.innerHTML + " U-8 Centers Total");
                         } else if (attr === "u8" && l === 4) {
                             col.innerHTML = u8BoysAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-8 Boys ARs");
                         } else if (attr === "u8" && l === 5) {
                             col.innerHTML = u8GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-8 Girls ARs");
                         } else if (attr === "u8" && l === 6) {
                             col.innerHTML = u8BoysAssistant + u8GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-8 ARs Total");
                         } else if (attr === "u8" && l === 7) {
                             col.innerHTML = totalU8Games;
+                            col.setAttribute("title", col.innerHTML + " U-8 Games Total");
                         } else if (attr === "u10" && l === 1) {
                             col.innerHTML = u10BoysCenter;
+                            col.setAttribute("title", col.innerHTML + " U-10 Boys Centers");
                         } else if (attr === "u10" && l === 2) {
                             col.innerHTML = u10GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-10 Girls Centers");
                         } else if (attr === "u10" && l === 3) {
                             col.innerHTML = u10BoysCenter + u10GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-10 Centers Total");
                         } else if (attr === "u10" && l === 4) {
                             col.innerHTML = u10BoysAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-10 Boys ARs");
                         } else if (attr === "u10" && l === 5) {
                             col.innerHTML = u10GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-10 Girls ARs");
                         } else if (attr === "u10" && l === 6) {
                             col.innerHTML = u10BoysAssistant + u10GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-10 ARs Total");
                         } else if (attr === "u10" && l === 7) {
                             col.innerHTML = totalU10Games;
+                            col.setAttribute("title", col.innerHTML + " U-10 Games Total");
                         } else if (attr === "u12" && l === 1) {
                             col.innerHTML = u12BoysCenter;
+                            col.setAttribute("title", col.innerHTML + " U-12 Boys Centers");
                         } else if (attr === "u12" && l === 2) {
                             col.innerHTML = u12GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-12 Girls Centers");
                         } else if (attr === "u12" && l === 3) {
                             col.innerHTML = u12BoysCenter + u12GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-12 Centers Total");
                         } else if (attr === "u12" && l === 4) {
                             col.innerHTML = u12BoysAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-12 Boys ARs");
                         } else if (attr === "u12" && l === 5) {
                             col.innerHTML = u12GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-12 Girls ARs");
                         } else if (attr === "u12" && l === 6) {
                             col.innerHTML = u12BoysAssistant + u12GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-12 ARs Total");
                         } else if (attr === "u12" && l === 7) {
                             col.innerHTML = totalU12Games;
+                            col.setAttribute("title", col.innerHTML + " U-12 Games Total");
                         } else if (attr === "u14" && l === 1) {
                             col.innerHTML = u14BoysCenter;
+                            col.setAttribute("title", col.innerHTML + " U-14 Boys Centers");
                         } else if (attr === "u14" && l === 2) {
                             col.innerHTML = u14GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-14 Girls Centers");
                         } else if (attr === "u14" && l === 3) {
                             col.innerHTML = u14BoysCenter + u14GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-14 Centers Total");
                         } else if (attr === "u14" && l === 4) {
                             col.innerHTML = u14BoysAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-14 Boys ARs");
                         } else if (attr === "u14" && l === 5) {
                             col.innerHTML = u14GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-14 Girls ARs");
                         } else if (attr === "u14" && l === 6) {
                             col.innerHTML = u14BoysAssistant + u14GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-14 ARs Total");
                         } else if (attr === "u14" && l === 7) {
                             col.innerHTML = totalU14Games;
+                            col.setAttribute("title", col.innerHTML + " U-14 Games Total");
                         } else if (attr === "u16" && l === 1) {
                             col.innerHTML = u16BoysCenter;
+                            col.setAttribute("title", col.innerHTML + " U-16 Boys Center");
                         } else if (attr === "u16" && l === 2) {
                             col.innerHTML = u16GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-16 Girls Center");
                         } else if (attr === "u16" && l === 3) {
                             col.innerHTML = u16BoysCenter + u16GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-16 Center Total");
                         } else if (attr === "u16" && l === 4) {
                             col.innerHTML = u16BoysAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-16 Boys ARs");
                         } else if (attr === "u16" && l === 5) {
                             col.innerHTML = u16GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-16 Girls ARs");
                         } else if (attr === "u16" && l === 6) {
                             col.innerHTML = u16BoysAssistant + u16GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-16 ARs Total");
                         } else if (attr === "u16" && l === 7) {
                             col.innerHTML = totalU16Games;
+                            col.setAttribute("title", col.innerHTML + " U-16 Games Total");
                         } else if (attr === "u19" && l === 1) {
                             col.innerHTML = u19BoysCenter;
+                            col.setAttribute("title", col.innerHTML + " U-19 Boys Center");
                         } else if (attr === "u19" && l === 2) {
                             col.innerHTML = u19GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-19 Girls Center");
                         } else if (attr === "u19" && l === 3) {
                             col.innerHTML = u19BoysCenter + u19GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " U-19 Centers Total");
                         } else if (attr === "u19" && l === 4) {
                             col.innerHTML = u19BoysAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-19 Boys ARs");
                         } else if (attr === "u19" && l === 5) {
                             col.innerHTML = u19GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-19 Girls ARs");
                         } else if (attr === "u19" && l === 6) {
                             col.innerHTML = u19BoysAssistant + u19GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " U-19 ARs Total");
                         } else if (attr === "u19" && l === 7) {
                             col.innerHTML = totalU19Games;
+                            col.setAttribute("title", col.innerHTML + " U-19 Games Total");
                         } else if (attr === "total" && l === 1) {
                             col.innerHTML = u8BoysCenter + u10BoysCenter + u12BoysCenter + u14BoysCenter + u16BoysCenter + u19BoysCenter;
+                            col.setAttribute("title", col.innerHTML + " Boys Games Centered Total");
                         } else if (attr === "total" && l === 2) {
                             col.innerHTML = u8GirlsCenter + u10GirlsCenter + u12GirlsCenter + u14GirlsCenter + u16GirlsCenter + u19GirlsCenter;
+                            col.setAttribute("title", col.innerHTML + " Girls Games Centered Total");
                         } else if (attr === "total" && l === 3) {
                             col.innerHTML = totalCenterPos;
+                            col.setAttribute("title", col.innerHTML + " Games Centered Total");
                         } else if (attr === "total" && l === 4) {
                             col.innerHTML = u8BoysAssistant + u10BoysAssistant + u12BoysAssistant + u14BoysAssistant + u16BoysAssistant + u19BoysAssistant;
+                            col.setAttribute("title", col.innerHTML + " Boys Games AR-ed Total");
                         } else if (attr === "total" && l === 5) {
                             col.innerHTML = u8GirlsAssistant + u10GirlsAssistant + u12GirlsAssistant + u14GirlsAssistant + u16GirlsAssistant + u19GirlsAssistant;
+                            col.setAttribute("title", col.innerHTML + " Girls Games AR-ed Total");
                         } else if (attr === "total" && l === 6) {
                             col.innerHTML = totalAssistantPos;
+                            col.setAttribute("title", col.innerHTML + " Games AR-ed Total");
                         } else if (attr === "total" && l === 7) {
                             col.innerHTML = totalCenterPos + totalAssistantPos;
+                            col.setAttribute("title", col.innerHTML + " Games Refereed Total");
                         }
                     }
                 }
