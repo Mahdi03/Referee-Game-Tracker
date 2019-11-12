@@ -122,6 +122,7 @@
     <script>
         if (localStorage.getItem("loggedIn") === null) {
             document.querySelector("#signOutButton").innerText = "Login/Register";
+            document.querySelector("#signOutButton").setAttribute("title", "Login or Register Now");
         }
     </script>
     <script src="signOut.js"></script>
