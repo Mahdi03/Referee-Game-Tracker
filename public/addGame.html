@@ -45,7 +45,7 @@
         <li style="float:right"><a id="signOutButton" href="#" title="Sign Out"><i class="fas fa-sign-out"></i> Sign Out</a></li>
     </ul>
     <div id="addGame">
-        <form id="gameInput" onsubmit="event.preventDefault(); submitGameData(this); event.preventDefault();">
+        <form id="gameInput" onsubmit="submitGameData(this); event.preventDefault();">
             <h1>Add A Game:</h1>
             <table>
                 <tr>
@@ -91,7 +91,6 @@
                     <th>Comments:</th>
                     <td><textarea name="comments"></textarea></td>
                 </tr>
-                <button id="addGameButtonClick" title="Add Game To Database" style="display: none;"><i class="fas fa-plus-circle"></i> Add Game</button>
             </table>
         </form>
     </div>
@@ -120,7 +119,7 @@
         var db = firebase.firestore();
         var addGameButton = document.querySelector("#addGameButton");
         addGameButton.onclick = function() {
-            document.querySelector("#addGameButtonClick").click();
+            submitGameData(document.forms[0]);
         };
 
         function submitGameData(form) {
