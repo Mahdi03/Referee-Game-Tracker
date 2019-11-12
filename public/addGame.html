@@ -45,7 +45,7 @@
         <li style="float:right"><a id="signOutButton" href="#" title="Sign Out"><i class="fas fa-sign-out"></i> Sign Out</a></li>
     </ul>
     <div id="addGame">
-        <form id="gameInput" onsubmit="submitGameData(this); event.preventDefault();">
+        <form id="gameInput" onsubmit="event.preventDefault(); submitGameData(this); event.preventDefault();">
             <h1>Add A Game:</h1>
             <table>
                 <tr>
