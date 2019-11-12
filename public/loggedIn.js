@@ -24,5 +24,8 @@ function updateUser() {
         }
     });
 }
-
+//Does not allow iFrames to display any of these websites
+if (window.top !== window.self) {
+    window.top.location = window.self.location;
+}
 //maybe add more functionality to this later
