@@ -318,7 +318,10 @@
                 "gamesReffed": newGamesList
             }).then(function() {
                 updateUser();
-                window.location.replace("editGame.html");
+                var a = document.createElement("a");
+                a.href = "editGame.html";
+                a.click();
+                //window.location.replace("editGame.html");
             });
         }
         $("#gamesList").scrollTableBody();
