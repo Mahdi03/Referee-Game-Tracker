@@ -629,3 +629,7 @@
                 }
             }
         }
+        console.error("If you are reading this, then congrats on knowing how to get here!!");
+        console.log("I know there are many mistakes in my code, please, if you would like to help, go ahead!!");
+        console.log("Here's my repo:\nhttps://github.com/Mahdi03/Referee-Game-Tracker.git");
+        console.log("Thanks for helping out!!");
