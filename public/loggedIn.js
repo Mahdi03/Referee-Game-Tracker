@@ -11,7 +11,14 @@ if (user === null && (window.location.pathname !== "/login.html" || window.locat
     username = user.username;
     email = user.email;
     fullName = user.fullName;
-    gamesReffed = user.gamesReffed;
+    gamesReffed = [];
+    user.gamesReffed.forEach((gameObject) => {
+        var orderedGameObject = {};
+        Object.keys(gameObject).sort().forEach((key) => {
+            orderedGameObject[key] = gameObject[key];
+        });
+        gamesReffed.push(orderedGameObject);
+    });
     updateUser();
 }
 
