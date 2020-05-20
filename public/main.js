@@ -36,7 +36,7 @@
                         switch (gameDetail) {
                             case "cr":
                                 detail = "Center";
-                                type = "position"
+                                type = "position";
                                 break;
                             case "ar":
                                 detail = "Assistant";
